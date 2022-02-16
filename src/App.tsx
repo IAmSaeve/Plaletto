@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { extractHexColors } from "./lib/helpers";
 
 function App() {
+  const [clipData, setClipData] = useState<string>("");
+  const loadClipboard = async () => setClipData(await navigator.clipboard.readText());
+
+  useEffect(() => {
+    loadClipboard();
+    document.onmouseleave = () => loadClipboard();
+    document.onmouseenter = () => loadClipboard();
+    window.onfocus = () => loadClipboard();
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='color-grid'>
+        {extractHexColors(clipData).map((v, i) =>
+          <div key={i} style={{ backgroundColor: v }} className='color-cell'><span>{v}</span></div>
+        )}
+      </div>
     </div>
   );
 }
