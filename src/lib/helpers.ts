@@ -4,7 +4,7 @@ function extractHexColors(text: string) {
 
 // https://stackoverflow.com/questions/11867545
 function getContrastYIQ(hexcolor: String){
-    hexcolor = hexcolor.replace("#", "");
+    hexcolor = hexcolor.replace('#', '');
     var r = parseInt(hexcolor.substring(0,2),16);
     var g = parseInt(hexcolor.substring(2,4),16);
     var b = parseInt(hexcolor.substring(4,2),16);

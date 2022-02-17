@@ -37,7 +37,7 @@ function App() {
       </div>
       <footer className='footer'>
         <div>
-          <a href="https://github.com/sebkirller/Plaletto">GitHub</a>
+          <a href='https://github.com/sebkirller/Plaletto' target={'_blank'}>GitHub</a>
         </div>
       </footer>
     </main>
