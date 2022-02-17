@@ -15,11 +15,11 @@ Furthermore the app only support hex colors formattet as `#1f6feb`, no support f
 
 - [X] Clean up bloat from inital setup
 - [ ] Remove old icons and logo files when new files are ready
-- [ ] Add prettier styling
+- [X] Add prettier styling
 - [ ] Spinup the app on a domain/server
 - [ ] App support for hex colors without `#`
 - [ ] Add a footer and some info text
 - [ ] Create a favicon and logo
-- [ ] Fix flow styling with many colors
-- [ ] Set correct text contrast
+- [X] Fix flow styling with many colors
+- [X] Set correct text contrast
 - [ ] Stuff 🤷‍♂️
