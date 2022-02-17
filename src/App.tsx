@@ -4,7 +4,17 @@ import { extractHexColors } from "./lib/helpers";
 
 function App() {
   const [clipData, setClipData] = useState<string>("");
-  const loadClipboard = async () => setClipData(await navigator.clipboard.readText());
+  const loadClipboard = async () => {
+    try {
+      let v = await navigator.clipboard.readText() ?? "";
+      if (!v || extractHexColors(v).length <= 0) return;
+      setClipData(v);
+    } catch {
+      /* Ignore errors */
+      // Most errors are caused by trying to read clipboard,
+      // when document is not in focus.
+    };
+  };
 
   useEffect(() => {
     loadClipboard();
