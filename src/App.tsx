@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { extractHexColors } from "./lib/helpers";
+import { extractHexColors, getContrastYIQ } from "./lib/helpers";
 
 function App() {
   const [clipData, setClipData] = useState<string>("");
@@ -21,16 +21,26 @@ function App() {
     document.onmouseleave = () => loadClipboard();
     document.onmouseenter = () => loadClipboard();
     window.onfocus = () => loadClipboard();
-  });
+  }, []);
 
   return (
-    <div className="App">
+    <main>
+      <header className='header'>
+        <h1>Plaletto 🎨</h1>
+      </header>
       <div className='color-grid'>
-        {extractHexColors(clipData).map((v, i) =>
-          <div key={i} style={{ backgroundColor: v }} className='color-cell'><span>{v}</span></div>
+        {[...new Set(extractHexColors(clipData))].map((v, i) =>
+          <div key={i} style={{ backgroundColor: v, color: getContrastYIQ(v) }} className='color-cell'>
+            <span>{`${v}`.toLocaleUpperCase()}</span>
+          </div>
         )}
       </div>
-    </div>
+      <footer className='footer'>
+        <div>
+          <a href="https://github.com/sebkirller/Plaletto">GitHub</a>
+        </div>
+      </footer>
+    </main>
   );
 }
 
